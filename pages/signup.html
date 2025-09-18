@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management System - Sign Up</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <h1>Create Account</h1>
+        <p class="subtitle">Sign up to start managing waste effectively</p>
+
+        <form id="signupForm" class="auth-form">
+            <div class="form-group">
+                <label for="newUsername">Username</label>
+                <input type="text" id="newUsername" placeholder="Choose a username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">Password</label>
+                <input type="password" id="newPassword" placeholder="Create a password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+            <p id="signupError" class="error-msg"></p>
+        </form>
+
+        <p class="extra-link">
+            Already have an account? <a href="../index.html">Login here</a>
+        </p>
+    </div>
+
+    <script src="../js/auth.js"></script>
+</body>
+
+</html>

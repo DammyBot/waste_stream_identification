@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management System - Home</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Welcome, <span id="userDisplay"></span> 👋</h1>
+            <a href="#" onclick="logoutUser()" class="logout-link">Logout</a>
+        </header>
+
+        <section class="dashboard-intro">
+            <p>
+                This Waste Management System helps you with:
+            </p>
+            <ul>
+                <li>♻️ Waste Stream Identification & Classification</li>
+                <li>📊 Waste Generation Tracking</li>
+                <li>🚮 Waste Disposal & Recycling Management</li>
+                <li>📈 Reporting & Analytics</li>
+                <li>⚖️ Compliance & Regulatory Information</li>
+            </ul>
+        </section>
+
+        <nav class="dashboard-nav">
+            <a href="identify.html" class="nav-card">Identify Waste</a>
+            <a href="tracking.html" class="nav-card">Track Waste</a>
+            <a href="disposal.html" class="nav-card">Disposal & Recycling</a>
+            <a href="reporting.html" class="nav-card">Reports & Analytics</a>
+            <a href="compliance.html" class="nav-card">Compliance Info</a>
+        </nav>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Show current user on dashboard
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = getCurrentUser();
+            if (!user) {
+                // If no user is logged in, redirect to login
+                window.location.href = "../index.html";
+            } else {
+                document.getElementById("userDisplay").textContent = user;
+            }
+        });
+    </script>
+</body>
+
+</html>
