@@ -371,7 +371,38 @@ body {
     left: 2rem;
 }
 
-/* === Track Page Styling === */
+/* Track Page Styling */
+/* Table wrapper for scroll */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: #2c3e50 #f1f1f1;
+    /* Firefox thumb and track */
+}
+/* Chrome, Edge, Safari */
+.table-wrapper::-webkit-scrollbar {
+    height: 6px;
+    /* smaller scrollbar height */
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #2c3e50;
+    border-radius: 10px;
+    border: 1px solid #f1f1f1;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #2c3e50;
+    /* darker on hover */
+}
+
 .track-container {
     display: flex;
     flex-direction: column;
@@ -383,26 +414,36 @@ body {
 /* Waste Table */
 .waste-table {
     width: 100%;
+    min-width: 550px;
+    /* prevents headers from cramping */
     border-collapse: collapse;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    table-layout: auto;
+    /* allow flexible columns */
+    word-wrap: break-word;
 }
 
 .waste-table th,
 .waste-table td {
     border: 1px solid #eee;
-    padding: 0.9rem;
+    padding: 0.8rem;
     text-align: left;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    white-space: normal;
+    /* allow wrapping */
+    word-break: break-word;
+    max-width: 150px;
+    /* prevent super-wide cells */
 }
 
 .waste-table th {
     background-color: #27ae60;
     color: #fff;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
 }
 
@@ -444,13 +485,14 @@ body {
     font-size: 0.95rem;
     font-weight: 500;
     transition: background 0.3s;
+    width: 100%;
 }
 
 .danger-btn:hover {
     background: #c0392b;
 }
 
-/* === Responsive Header === */
+/* Responsive Header */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -492,20 +534,20 @@ body {
     }
 
 
-    .track-container {
-        border: 1px solid #eee;
-        border-radius: 6px;
-        -webkit-overflow-scrolling: touch;
-        /* smooth scroll on iOS */
-    }
-
     .waste-table {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .waste-table th,
     .waste-table td {
-        padding: 0.6rem;
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        max-width: 100px;
+        /* keep things tight */
+    }
+
+    .waste-table th {
+        font-size: 0.7rem;
     }
 
     .waste-table button {
