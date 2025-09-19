@@ -504,6 +504,7 @@ body {
 canvas {
     background: #fff;
     width: 100% !important;
+    height: auto !important;
 }
 
 /* Responsive Header */
