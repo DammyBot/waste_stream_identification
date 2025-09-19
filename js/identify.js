@@ -5,23 +5,16 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
   const wasteType = document.getElementById("wasteType").value;
   const description = document.getElementById("description").value.trim();
 
-  // Basic classification rules
+  // Classification
   let category = "";
   switch (wasteType) {
-    case "organic":
-      category = "Biodegradable";
-      break;
+    case "organic": category = "Biodegradable"; break;
     case "plastic":
     case "metal":
     case "glass":
-    case "paper":
-      category = "Recyclable";
-      break;
-    case "e-waste":
-      category = "Hazardous / Special Recycling";
-      break;
-    default:
-      category = "General Waste";
+    case "paper": category = "Recyclable"; break;
+    case "e-waste": category = "Hazardous / Special Recycling"; break;
+    default: category = "General Waste";
   }
 
   // Show result card
@@ -30,7 +23,7 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
   document.getElementById("resultType").textContent = wasteType;
   document.getElementById("resultCategory").textContent = category;
 
-  // Store temporarily for saving
+  // Store temporarily
   window.currentWaste = {
     name: wasteName,
     type: wasteType,
@@ -41,9 +34,17 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
 });
 
 function saveWaste() {
-  let saved = JSON.parse(localStorage.getItem("wasteRecords")) || [];
+  const loggedInUser = localStorage.getItem("currentUser");
+  if (!loggedInUser) {
+    alert("You must be logged in to save waste records.");
+    return;
+  }
+
+  const storageKey = `wasteRecords_${loggedInUser}`;
+  let saved = JSON.parse(localStorage.getItem(storageKey)) || [];
   saved.push(window.currentWaste);
-  localStorage.setItem("wasteRecords", JSON.stringify(saved));
+  localStorage.setItem(storageKey, JSON.stringify(saved));
+
   alert("Waste record saved successfully!");
   document.getElementById("identifyForm").reset();
   document.getElementById("resultCard").style.display = "none";

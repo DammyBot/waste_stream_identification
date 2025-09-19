@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack | Disposal & Recycling</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/navigation.js" defer></script>
+    <script src="../js/disposal.js" defer></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="top-navigation">
+                <h1>EcoTrack</h1>
+                <button class="hamburger" id="hamburger">&#9776;</button>
+            </div>
+            <nav class="site-nav" id="siteNav">
+                <a href="home.html">Home</a>
+                <a href="identify.html">Identify</a>
+                <a href="track.html">Track</a>
+                <a href="report.html">Reports</a>
+                <a href="compliance.html">Compliance</a>
+                <a href="disposal.html" class="active">Disposal</a>
+            </nav>
+        </header>
+
+        <main class="dashboard">
+            <section class="card full-width">
+                <h2>Disposal & Recycling Management</h2>
+                <p>
+                    Choose the appropriate disposal or recycling option for your waste streams.
+                    Ensure safe, eco-friendly, and compliant waste handling.
+                </p>
+
+                <form>
+                    <div class="form-group">
+                        <label for="wasteType">Waste Type</label>
+                        <select id="wasteType" name="wasteType" required>
+                            <option value="">-- Select Waste Type --</option>
+                            <option value="plastic">Plastic</option>
+                            <option value="metal">Metal</option>
+                            <option value="organic">Organic</option>
+                            <option value="electronic">Electronic</option>
+                            <option value="hazardous">Hazardous</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="method">Disposal / Recycling Method</label>
+                        <select id="method" name="method" required>
+                            <option value="">-- Select Method --</option>
+                            <option value="recycle">Recycling Center</option>
+                            <option value="compost">Composting</option>
+                            <option value="landfill">Landfill</option>
+                            <option value="incineration">Incineration</option>
+                            <option value="hazardous">Hazardous Waste Facility</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" name="notes"
+                            placeholder="e.g. Handle with gloves, fragile, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Schedule Disposal</button>
+                </form>
+            </section>
+
+            <section class="card full-width">
+                <h3>Nearby Disposal Facilities</h3>
+                <div class="facility-grid">
+                    <div class="facility-card">
+                        <h4>GreenCycle Recycling Center</h4>
+                        <p>Distance: 2.3 km</p>
+                        <p>Accepts: Plastic, Metal, Paper</p>
+                    </div>
+                    <div class="facility-card">
+                        <h4>EcoWaste Hazardous Facility</h4>
+                        <p>Distance: 5.6 km</p>
+                        <p>Accepts: Hazardous, Electronic</p>
+                    </div>
+                    <div class="facility-card">
+                        <h4>City Compost Site</h4>
+                        <p>Distance: 3.1 km</p>
+                        <p>Accepts: Organic, Green Waste</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

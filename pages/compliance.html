@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Compliance - Waste Management</title>
+    <link rel="stylesheet" href="../css/styles.css" >
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="top-navigation">
+                <h1>Waste Management</h1>
+                <button class="hamburger" id="hamburger">&#9776;</button>
+            </div>
+            <nav class="site-nav" id="siteNav">
+                <a href="home.html">Home</a>
+                <a href="identify.html">Identify</a>
+                <a href="track.html">Track</a>
+                <a href="reporting.html">Reports</a>
+                <a href="compliance.html" class="active">Compliance</a>
+                <a href="../index.html" onclick="logout()">Logout</a>
+            </nav>
+        </header>
+        
+        <main class="dashboard">
+            <section class="card full-width">
+                <h2>Compliance & Regulatory Information</h2>
+                <p>
+                    Proper waste management is not just good practice — it's required by law.
+                    Below are key compliance guidelines and best practices you should follow.
+                </p>
+            </section>
+        
+            <section class="card">
+                <h3>Key Regulatory Guidelines</h3>
+                <ul>
+                    <li>Segregate waste at the source (organic, recyclable, hazardous).</li>
+                    <li>Ensure hazardous/e-waste is handled only by certified recyclers.</li>
+                    <li>Maintain records of waste generated and disposal methods.</li>
+                    <li>Submit periodic reports to local environmental authorities.</li>
+                    <li>Follow local government recycling and landfill restrictions.</li>
+                </ul>
+            </section>
+        
+            <section class="card">
+                <h3>Best Practices</h3>
+                <ol>
+                    <li>Train staff and community members on waste segregation.</li>
+                    <li>Adopt the “reduce, reuse, recycle” principle at all levels.</li>
+                    <li>Label waste bins clearly for easy classification.</li>
+                    <li>Track waste volumes to reduce generation over time.</li>
+                    <li>Stay updated with environmental laws in your region.</li>
+                </ol>
+            </section>
+        
+            <!-- <section class="card">
+                <h3>Resources & Downloads</h3>
+                <p>Here are some useful documents and templates:</p>
+                <ul>
+                    <li><a href="#">Waste Tracking Log Template (PDF)</a></li>
+                    <li><a href="#">Recycling Guidelines (PDF)</a></li>
+                    <li><a href="#">Local Environmental Laws (Link)</a></li>
+                </ul>
+            </section> -->
+        </main>
+    </div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+        }
+    </script>
+    <script src="../js/navigation.js"></script>
+</body>
+
+</html>

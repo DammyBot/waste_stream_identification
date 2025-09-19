@@ -1,10 +1,11 @@
-// Grab table body
 const tableBody = document.querySelector("#wasteTable tbody");
 const clearAllBtn = document.getElementById("clearAllBtn");
 
-// Load waste records from localStorage
+const loggedInUser = localStorage.getItem("currentUser");
+const storageKey = `wasteRecords_${loggedInUser}`;
+
 function loadWasteRecords() {
-  const records = JSON.parse(localStorage.getItem("wasteRecords")) || [];
+  const records = JSON.parse(localStorage.getItem(storageKey)) || [];
   tableBody.innerHTML = "";
 
   if (records.length === 0) {
@@ -27,18 +28,17 @@ function loadWasteRecords() {
 }
 
 function deleteRecord(index) {
-  let records = JSON.parse(localStorage.getItem("wasteRecords")) || [];
+  let records = JSON.parse(localStorage.getItem(storageKey)) || [];
   records.splice(index, 1);
-  localStorage.setItem("wasteRecords", JSON.stringify(records));
+  localStorage.setItem(storageKey, JSON.stringify(records));
   loadWasteRecords();
 }
 
 clearAllBtn.addEventListener("click", () => {
   if (confirm("Are you sure you want to clear all records?")) {
-    localStorage.removeItem("wasteRecords");
+    localStorage.removeItem(storageKey);
     loadWasteRecords();
   }
 });
 
-// Initialize on page load
 loadWasteRecords();

@@ -1,5 +1,8 @@
 // Load waste records
-const records = JSON.parse(localStorage.getItem("wasteRecords")) || [];
+const loggedInUser = localStorage.getItem("currentUser");
+const storageKey = `wasteRecords_${loggedInUser}`;
+const records = JSON.parse(localStorage.getItem(storageKey)) || [];
+
 
 // Count by type and category
 const typeCounts = {};
