@@ -361,11 +361,93 @@ body {
 /* === Hamburger Menu === */
 .hamburger {
     display: none;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     background: none;
     border: none;
     cursor: pointer;
     color: #2c3e50;
+
+    position: absolute;
+    left: 2rem;
+}
+
+/* === Track Page Styling === */
+.track-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+/* Waste Table */
+.waste-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.waste-table th,
+.waste-table td {
+    border: 1px solid #eee;
+    padding: 0.9rem;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.waste-table th {
+    background-color: #27ae60;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.waste-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.waste-table tr:hover {
+    background-color: #f1f1f1;
+    transition: background 0.2s ease-in-out;
+}
+
+/* Table Action Buttons */
+.waste-table button {
+    background: #e67e22;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.waste-table button:hover {
+    background: #d35400;
+}
+
+/* Danger Button (Clear All) */
+.danger-btn {
+    margin-top: 1rem;
+    align-self: flex-start;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.danger-btn:hover {
+    background: #c0392b;
 }
 
 /* === Responsive Header === */
@@ -407,5 +489,32 @@ body {
 
     .site-nav a:last-child {
         border-bottom: none;
+    }
+
+
+    .track-container {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        -webkit-overflow-scrolling: touch;
+        /* smooth scroll on iOS */
+    }
+
+    .waste-table {
+        font-size: 0.85rem;
+    }
+
+    .waste-table th,
+    .waste-table td {
+        padding: 0.6rem;
+    }
+
+    .waste-table button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .danger-btn {
+        width: 100%;
+        text-align: center;
     }
 }

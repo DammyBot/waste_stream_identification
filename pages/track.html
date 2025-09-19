@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Waste - Waste Management</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Waste Management</h1>
+            <button class="hamburger" id="hamburger">&#9776;</button>
+            <nav class="site-nav" id="siteNav">
+                <a href="home.html">Home</a>
+                <a href="identify.html">Identify</a>
+                <a href="track.html" class="active">Track</a>
+                <a href="report.html">Reports</a>
+                <a href="compliance.html">Compliance</a>
+                <a href="index.html" onclick="logout()">Logout</a>
+            </nav>
+        </header>
+
+        <main class="dashboard">
+            <section class="card full-width">
+                <h2>Waste Tracking</h2>
+                <p>Here are all the waste items you've identified and saved.</p>
+
+                <table class="waste-table" id="wasteTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows injected by JS -->
+                    </tbody>
+                </table>
+
+                <button id="clearAllBtn" class="danger-btn">Clear All Records</button>
+            </section>
+        </main>
+
+    </div>
+    <script src="track.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+        }
+    </script>
+</body>
+
+</html>
