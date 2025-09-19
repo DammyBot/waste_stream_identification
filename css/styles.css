@@ -495,11 +495,16 @@ body {
 }
 
 /* Chart Containers */
-/* .chart-container {
+.chart-container {
     width: 100%;
     max-width: 600px;
-    margin: 2rem auto;
-} */
+    margin: 2rem auto; 
+}
+
+canvas {
+    background: #fff;
+    width: 100% !important;
+}
 
 /* Responsive Header */
 @media (max-width: 768px) {
