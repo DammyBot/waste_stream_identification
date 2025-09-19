@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports & Analytics - Waste Management</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Waste Management</h1>
+            <button class="hamburger" id="hamburger">&#9776;</button>
+            <nav class="site-nav" id="siteNav">
+                <a href="home.html">Home</a>
+                <a href="identify.html">Identify</a>
+                <a href="track.html">Track</a>
+                <a href="report.html" class="active">Reports</a>
+                <a href="compliance.html">Compliance</a>
+                <a href="index.html" onclick="logout()">Logout</a>
+            </nav>
+        </header>
+        
+        <main class="dashboard">
+            <section class="card full-width">
+                <h2>Reports & Analytics</h2>
+                <p>Visual overview of waste classification and tracking data.</p>
+        
+                <div class="chart-container">
+                    <canvas id="wasteTypeChart"></canvas>
+                </div>
+        
+                <div class="chart-container">
+                    <canvas id="wasteCategoryChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/report.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+        }
+    </script>
+</body>
+
+</html>

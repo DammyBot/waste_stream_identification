@@ -124,6 +124,7 @@ body {
 
 .dashboard-header h1 {
     font-size: 1.4rem;
+    text-align: center;
     color: #2e7d32;
 }
 
@@ -358,17 +359,17 @@ body {
     color: #fff;
 }
 
-/* === Hamburger Menu === */
+/* Hamburger Menu */
 .hamburger {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     background: none;
     border: none;
     cursor: pointer;
     color: #2c3e50;
 
     position: absolute;
-    left: 2rem;
+    left: 2.5rem;
 }
 
 /* Track Page Styling */
@@ -381,6 +382,7 @@ body {
     scrollbar-color: #2c3e50 #f1f1f1;
     /* Firefox thumb and track */
 }
+
 /* Chrome, Edge, Safari */
 .table-wrapper::-webkit-scrollbar {
     height: 6px;
@@ -490,6 +492,13 @@ body {
 
 .danger-btn:hover {
     background: #c0392b;
+}
+
+/* Chart Containers */
+.chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
 }
 
 /* Responsive Header */
