@@ -495,11 +495,11 @@ body {
 }
 
 /* Chart Containers */
-.chart-container {
+/* .chart-container {
     width: 100%;
     max-width: 600px;
     margin: 2rem auto;
-}
+} */
 
 /* Responsive Header */
 @media (max-width: 768px) {
