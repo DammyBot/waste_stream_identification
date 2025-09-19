@@ -42,12 +42,3 @@ clearAllBtn.addEventListener("click", () => {
 
 // Initialize on page load
 loadWasteRecords();
-
-
-// === Hamburger Menu Logic (reuse across pages) ===
-const hamburger = document.getElementById("hamburger");
-const siteNav = document.getElementById("siteNav");
-
-hamburger.addEventListener("click", () => {
-  siteNav.classList.toggle("active");
-});

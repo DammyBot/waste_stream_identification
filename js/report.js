@@ -17,7 +17,7 @@ const typeData = Object.values(typeCounts);
 const categoryLabels = Object.keys(categoryCounts);
 const categoryData = Object.values(categoryCounts);
 
-// Chart.js: Waste Type Chart
+// Waste Type Chart
 new Chart(document.getElementById("wasteTypeChart"), {
   type: "bar",
   data: {
@@ -41,7 +41,7 @@ new Chart(document.getElementById("wasteTypeChart"), {
   }
 });
 
-// Chart.js: Waste Category Chart
+// Waste Category Chart
 new Chart(document.getElementById("wasteCategoryChart"), {
   type: "pie",
   data: {
@@ -60,12 +60,4 @@ new Chart(document.getElementById("wasteCategoryChart"), {
       legend: { position: "bottom" }
     }
   }
-});
-
-// === Hamburger Menu Logic ===
-const hamburger = document.getElementById("hamburger");
-const siteNav = document.getElementById("siteNav");
-
-hamburger.addEventListener("click", () => {
-  siteNav.classList.toggle("active");
 });
