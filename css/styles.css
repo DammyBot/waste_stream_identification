@@ -356,7 +356,7 @@ body {
 }
 
 
-.top-navigation{
+.top-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -645,6 +645,43 @@ textarea {
 .facility-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Custom Category Styling */
+.custom-category {
+    background-color: #f0f8ff;
+    /* subtle light-blue highlight */
+    border: 1px solid #b0d4f1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.custom-category:hover {
+    background-color: #e6f2fa;
+}
+
+/* If you have a remove/delete button for custom categories */
+.custom-category button {
+    background: #e74c3c;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.custom-category button:hover {
+    background: #c0392b;
 }
 
 @media (max-width: 768px) {

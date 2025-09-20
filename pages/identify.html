@@ -48,6 +48,11 @@
                     <option value="other">Other</option>
                 </select>
 
+                <div id="customTypeContainer" style="display: none;">
+                    <label for="customType">Custom Waste Type</label>
+                    <input type="text" id="customType" placeholder="Enter your own category">
+                </div>
+
                 <label for="description">Description</label>
                 <textarea id="description" placeholder="Brief description..." rows="3"></textarea>
 
@@ -61,9 +66,10 @@
                 <p><strong>Waste Name:</strong> <span id="resultName"></span></p>
                 <p><strong>Type:</strong> <span id="resultType"></span></p>
                 <p><strong>Category:</strong> <span id="resultCategory"></span></p>
+                <p><strong>Recommendation:</strong> <span id="resultRecommendation"></span></p>
             </div>
             <br>
-            <button onclick="saveWaste()" class="btn">Save to Records</button>
+            <button id="saveWasteBtn" class="btn">Save to Records</button>
         </section>
     </div>
 
