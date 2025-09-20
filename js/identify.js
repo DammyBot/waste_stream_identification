@@ -19,6 +19,7 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
 
   const wasteName = document.getElementById("wasteName").value.trim();
   let wasteType = document.getElementById("wasteType").value;
+  const quantity = document.getElementById("quantity").value.trim();
   const description = document.getElementById("description").value.trim();
 
   // Handle custom type
@@ -63,6 +64,7 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
   document.getElementById("resultCard").style.display = "block";
   document.getElementById("resultName").textContent = wasteName;
   document.getElementById("resultType").textContent = wasteType;
+  document.getElementById("resultQuantity").textContent = quantity;
   document.getElementById("resultCategory").textContent = category;
   document.getElementById("resultRecommendation").textContent = recommendation;
 
@@ -70,13 +72,13 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
   window.currentWaste = {
     name: wasteName,
     type: wasteType,
+    quantity: quantity,
     description: description,
     category: category,
     recommendation: recommendation,
     date: new Date().toLocaleString()
   };
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const saveWasteBtn = document.getElementById("saveWasteBtn");
@@ -87,32 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function saveWaste() {
-  const wasteName = document.getElementById("wasteName").value.trim();
-  const wasteType = document.getElementById("wasteType").value;
-
-  if (!wasteName || !wasteType) {
-    alert("Please fill out all fields before saving.");
+  const loggedInUser = localStorage.getItem("currentUser");
+  if (!loggedInUser) {
+    alert("You must be logged in to save waste records.");
     return;
   }
 
-  const wasteData = {
-    name: wasteName,
-    type: wasteType,
-    date: new Date().toISOString()
-  };
+  if (!window.currentWaste) {
+    alert("No waste record to save. Please classify first.");
+    return;
+  }
 
-  // Get existing waste records from localStorage
-  let storedWaste = JSON.parse(localStorage.getItem("wasteRecords")) || [];
-  storedWaste.push(wasteData);
+  const storageKey = `wasteRecords_${loggedInUser}`;
+  let storedWaste = JSON.parse(localStorage.getItem(storageKey)) || [];
+  storedWaste.push(window.currentWaste);
 
   // Save back to localStorage
-  localStorage.setItem("wasteRecords", JSON.stringify(storedWaste));
+  localStorage.setItem(storageKey, JSON.stringify(storedWaste));
 
   alert("Waste record saved successfully!");
 
-  // Optional: clear form fields after saving
-  document.getElementById("wasteName").value = "";
-  document.getElementById("wasteType").value = "";
+  // Reset form and hide result card
+  document.getElementById("identifyForm").reset();
+  document.getElementById("resultCard").style.display = "none";
+  customTypeContainer.style.display = "none"; // hide custom type field if open
 
   renderWasteList();
 }
@@ -124,18 +124,25 @@ function renderWasteList() {
   // Clear the section first
   wasteListContainer.innerHTML = "";
 
-  let storedWaste = JSON.parse(localStorage.getItem("wasteRecords")) || [];
+  const loggedInUser = localStorage.getItem("currentUser");
+  if (!loggedInUser) {
+    wasteListContainer.innerHTML = "<p>Please log in to view your waste records.</p>";
+    return;
+  }
+
+  const storageKey = `wasteRecords_${loggedInUser}`;
+  let storedWaste = JSON.parse(localStorage.getItem(storageKey)) || [];
 
   if (storedWaste.length === 0) {
     wasteListContainer.innerHTML = "<p>No waste records yet.</p>";
     return;
   }
 
-  storedWaste.forEach((waste, index) => {
+  storedWaste.forEach((waste) => {
     const item = document.createElement("div");
     item.classList.add("waste-item");
     item.innerHTML = `
-      <p><strong>${waste.name}</strong> (${waste.type})</p>
+      <p><strong>${waste.name}</strong> (${waste.type}) - ${waste.quantity}</p>
       <small>${new Date(waste.date).toLocaleString()}</small>
     `;
     wasteListContainer.appendChild(item);

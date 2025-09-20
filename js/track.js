@@ -9,7 +9,7 @@ function loadWasteRecords() {
   tableBody.innerHTML = "";
 
   if (records.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No records found</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">No records found</td></tr>`;
     return;
   }
 
@@ -18,6 +18,7 @@ function loadWasteRecords() {
     row.innerHTML = `
       <td>${record.name}</td>
       <td>${record.type}</td>
+      <td>${record.quantity || "-"}</td>
       <td>${record.category}</td>
       <td>${record.description || "-"}</td>
       <td>${record.date}</td>
