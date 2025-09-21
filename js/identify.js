@@ -20,59 +20,142 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
   const wasteName = document.getElementById("wasteName").value.trim();
   let wasteType = document.getElementById("wasteType").value;
   const quantity = document.getElementById("quantity").value.trim();
+  const unit = document.getElementById("unit").value;
+  const area = document.getElementById("area").value.trim();
   const description = document.getElementById("description").value.trim();
 
   // Handle custom type
   if (wasteType === "other") {
-    wasteType = customTypeInput.value.trim() || "Custom Waste";
+    const customVal = customTypeInput.value.trim();
+    wasteType = customVal ? `Custom: ${customVal}` : "Custom: Unspecified";
   }
 
   // Classification & Recommendations
   let category = "";
   let recommendation = "";
+  let facility = "";
+  let disposalLink = `disposal.html?wasteType=${encodeURIComponent(wasteType)}`;
+
   switch (wasteType.toLowerCase()) {
     case "organic":
       category = "Biodegradable";
-      recommendation = "Consider composting organic waste or using it for biogas.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Store separately in sealed bins to avoid pests.</li>
+          <li><strong>Reuse:</strong> Use for compost or biogas production.</li>
+          <li><strong>Disposal:</strong> Deliver to municipal compost facilities or local farms.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> City Compost Site (3.1 km)</p>`;
       break;
+
     case "plastic":
       category = "Recyclable";
-      recommendation = "Send plastics to a recycling facility. Avoid burning.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Rinse and sort by type (PET, HDPE, etc.).</li>
+          <li><strong>Reuse:</strong> Repurpose bottles/containers for storage or DIY projects.</li>
+          <li><strong>Disposal:</strong> Send plastics to a recycling facility. Avoid burning.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> GreenCycle Recycling Center (2.3 km)</p>`;
       break;
+
     case "metal":
       category = "Recyclable";
-      recommendation = "Scrap metal can be sold or sent to recycling.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Keep metals free of contaminants like oil or paint.</li>
+          <li><strong>Reuse:</strong> Scrap metal can be sold or melted for reuse.</li>
+          <li><strong>Disposal:</strong> Send to a certified metal recycling facility.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> GreenCycle Recycling Center (2.3 km)</p>`;
       break;
+
     case "glass":
       category = "Recyclable";
-      recommendation = "Glass can be reused or recycled into new products.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Separate broken glass and handle with protective gloves.</li>
+          <li><strong>Reuse:</strong> Intact jars/bottles can be reused for storage.</li>
+          <li><strong>Disposal:</strong> Deliver glass to a recycling plant for reprocessing.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> GreenCycle Recycling Center (2.3 km)</p>`;
       break;
+
     case "paper":
       category = "Recyclable";
-      recommendation = "Paper can be recycled into cardboard or pulp.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Keep dry and clean for recycling.</li>
+          <li><strong>Reuse:</strong> Use for packaging or craft projects.</li>
+          <li><strong>Disposal:</strong> Send to paper recycling facilities to be pulped.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> GreenCycle Recycling Center (2.3 km)</p>`;
       break;
+
     case "e-waste":
       category = "Hazardous / Special Recycling";
-      recommendation = "Dispose of e-waste through certified recycling facilities.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Do not break or incinerate. Store in secure containers.</li>
+          <li><strong>Reuse:</strong> Consider refurbishing electronics for resale or donation.</li>
+          <li><strong>Disposal:</strong> Deliver to certified e-waste recycling centers.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> EcoWaste Hazardous Facility (5.6 km)</p>`;
       break;
+
+    case "hazardous":
+      category = "Hazardous Waste";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Always use protective gear when handling.</li>
+          <li><strong>Storage:</strong> Keep in clearly labeled containers.</li>
+          <li><strong>Disposal:</strong> Use licensed hazardous waste services only.</li>
+        </ul>`;
+      facility = `<p><strong>Nearby Facility:</strong> EcoWaste Hazardous Facility (5.6 km)</p>`;
+      break;
+
     default:
       category = "General / Custom Category";
-      recommendation = "Handle carefully and consult disposal guidelines.";
+      recommendation = `
+        <ul>
+          <li><strong>Handling:</strong> Store securely and label clearly.</li>
+          <li><strong>Reuse:</strong> Explore possibilities for reuse within your operations.</li>
+          <li><strong>Disposal:</strong> Check disposal page for approved options.</li>
+        </ul>`;
+      facility = `<p><strong>Tip:</strong> Consult local regulations for proper disposal methods.</p>`;
   }
 
   // Show result card
   document.getElementById("resultCard").style.display = "block";
   document.getElementById("resultName").textContent = wasteName;
-  document.getElementById("resultType").textContent = wasteType;
+  document.getElementById("resultType").innerHTML =
+    wasteType.startsWith("Custom:")
+      ? `<span class="custom-category">${wasteType}</span>`
+      : wasteType;
   document.getElementById("resultQuantity").textContent = quantity;
-  document.getElementById("resultCategory").textContent = category;
-  document.getElementById("resultRecommendation").textContent = recommendation;
+  document.getElementById("resultUnit").textContent = unit;
+  document.getElementById("resultArea").textContent = area || "-";
+  document.getElementById("resultCategory").innerHTML =
+    category.includes("Custom")
+      ? `<span class="custom-category">${category}</span>`
+      : category;
+  document.getElementById("resultRecommendation").innerHTML = `
+    <div class="recommendation-box">
+      ${recommendation}
+      <a href="${disposalLink}" class="btn small-btn" style="margin-top:10px; display:inline-block;color:#fff;">
+        View Disposal Options
+      </a>
+    </div>
+  `;
+  document.getElementById("facilitySuggestion").innerHTML = facility;
 
   // Store temporarily
   window.currentWaste = {
     name: wasteName,
     type: wasteType,
     quantity: quantity,
+    unit: unit,
+    area: area,
     description: description,
     category: category,
     recommendation: recommendation,
@@ -82,10 +165,11 @@ document.getElementById("identifyForm").addEventListener("submit", function (e) 
 
 document.addEventListener("DOMContentLoaded", () => {
   const saveWasteBtn = document.getElementById("saveWasteBtn");
-
   if (saveWasteBtn) {
     saveWasteBtn.addEventListener("click", saveWaste);
   }
+
+  renderWasteList();
 });
 
 function saveWaste() {
@@ -104,15 +188,13 @@ function saveWaste() {
   let storedWaste = JSON.parse(localStorage.getItem(storageKey)) || [];
   storedWaste.push(window.currentWaste);
 
-  // Save back to localStorage
   localStorage.setItem(storageKey, JSON.stringify(storedWaste));
 
   alert("Waste record saved successfully!");
 
-  // Reset form and hide result card
   document.getElementById("identifyForm").reset();
   document.getElementById("resultCard").style.display = "none";
-  customTypeContainer.style.display = "none"; // hide custom type field if open
+  customTypeContainer.style.display = "none";
 
   renderWasteList();
 }
@@ -121,9 +203,7 @@ function renderWasteList() {
   const wasteListContainer = document.getElementById("wasteList");
   if (!wasteListContainer) return;
 
-  // Clear the section first
   wasteListContainer.innerHTML = "";
-
   const loggedInUser = localStorage.getItem("currentUser");
   if (!loggedInUser) {
     wasteListContainer.innerHTML = "<p>Please log in to view your waste records.</p>";
@@ -142,7 +222,11 @@ function renderWasteList() {
     const item = document.createElement("div");
     item.classList.add("waste-item");
     item.innerHTML = `
-      <p><strong>${waste.name}</strong> (${waste.type}) - ${waste.quantity}</p>
+      <p><strong>${waste.name}</strong> ${
+        waste.type.startsWith("Custom:")
+          ? `<span class="custom-category">(${waste.type})</span>`
+          : `(${waste.type})`
+      } - ${waste.quantity} ${waste.unit || ""} (${waste.area || "N/A"})</p>
       <small>${new Date(waste.date).toLocaleString()}</small>
     `;
     wasteListContainer.appendChild(item);

@@ -411,8 +411,7 @@ body {
 
 .waste-table {
     width: 100%;
-    min-width: 650px;
-    /* a bit wider since we added quantity */
+    min-width: 800px;
     border-collapse: collapse;
     background: #fff;
     border-radius: 10px;
@@ -453,10 +452,8 @@ body {
     transition: background 0.2s ease-in-out;
 }
 
-/* Action Buttons in Waste Table */
 .waste-table button {
     background: #e74c3c;
-    /* danger red */
     color: #fff;
     border: none;
     padding: 0.4rem 0.9rem;
@@ -472,7 +469,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Empty Row Styling */
 .waste-table td[colspan] {
     text-align: center;
     font-style: italic;
@@ -662,10 +658,8 @@ textarea {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Custom Category Styling */
 .custom-category {
     background-color: #f0f8ff;
-    /* subtle light-blue highlight */
     border: 1px solid #b0d4f1;
     border-radius: 8px;
     padding: 10px 14px;
@@ -683,7 +677,6 @@ textarea {
     background-color: #e6f2fa;
 }
 
-/* Disposal history styling */
 .history-list {
     display: grid;
     gap: 1rem;
@@ -696,7 +689,6 @@ textarea {
     padding: 1rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border-left: 5px solid #27ae60;
-    /* green accent for eco theme */
     transition: transform 0.2s ease;
 }
 
@@ -712,7 +704,6 @@ textarea {
     color: #2c3e50;
 }
 
-/* If you have a remove/delete button for custom categories */
 .custom-category button {
     background: #e74c3c;
     border: none;
@@ -727,6 +718,163 @@ textarea {
 .custom-category button:hover {
     background: #c0392b;
 }
+
+.recommendation-box {
+    background: #f8f9fa;
+    border-left: 4px solid #2a9d8f;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.recommendation-box ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.recommendation-box li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.custom-category {
+    color: #8e44ad;
+    font-weight: bold;
+    background: rgba(142, 68, 173, 0.1);
+    padding: 2px 6px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.overdue {
+    border-left: 5px solid red;
+    background: #ffe6e6;
+}
+
+.delete-btn {
+    background: #c0392b;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #a93226;
+}
+
+#reminderForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#reminderForm input,
+#reminderForm button {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#reminderForm button {
+    background: #2e7d32;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+#reminderForm button:hover {
+    background: #1b5e20;
+}
+
+.history-item {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.history-item.overdue {
+    border-left: 5px solid #d32f2f;
+    background: #fdecea;
+}
+
+.history-item.upcoming {
+    border-left: 5px solid #2e7d32;
+    background: #e8f5e9;
+}
+
+.delete-btn {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #9a0007;
+}
+
+#searchBox {
+    width: 100%;
+    padding: 10px;
+    margin: 1em 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+.collapsible {
+    margin-bottom: 1em;
+}
+
+.collapsible-header {
+    cursor: pointer;
+    background: #f4f6f9;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s;
+    position: relative;
+}
+
+.collapsible-header:hover {
+    background: #e2e8f0;
+}
+
+.collapsible-header.active {
+    color: #00796b;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding-left: 20px;
+}
+
+.collapsible-content li {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.collapsible-content a {
+    text-decoration: none;
+    color: #00796b;
+    transition: color 0.2s;
+}
+
+.collapsible-content a:hover {
+    color: #004d40;
+    text-decoration: underline;
+}
+
 
 @media (max-width: 768px) {
     header {

@@ -45,6 +45,7 @@
                     <option value="glass">Glass</option>
                     <option value="paper">Paper</option>
                     <option value="e-waste">E-Waste</option>
+                    <option value="hazardous">Hazardous</option>
                     <option value="other">Other</option>
                 </select>
 
@@ -54,7 +55,21 @@
                 </div>
 
                 <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" placeholder="e.g. 5 (kg/items)" min="1" required>
+                <input type="number" id="quantity" placeholder="e.g. 5" min="1" required>
+
+                <label for="unit">Unit</label>
+                <select id="unit" required>
+                    <option value="">Select unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="ton">ton</option>
+                    <option value="liters">liters</option>
+                    <option value="m³">m³</option>
+                    <option value="items">items</option>
+                </select>
+
+                <label for="area">Area / Site</label>
+                <input type="text" id="area" placeholder="e.g. Construction Site A, Office Block, Storage Room">
 
                 <label for="description">Description</label>
                 <textarea id="description" placeholder="Brief description..." rows="3"></textarea>
@@ -68,13 +83,21 @@
             <div class="result-box">
                 <p><strong>Waste Name:</strong> <span id="resultName"></span></p>
                 <p><strong>Type:</strong> <span id="resultType"></span></p>
-                <p><strong>Quantity:</strong> <span id="resultQuantity"></span></p>
+                <p><strong>Quantity:</strong> <span id="resultQuantity"></span> <span id="resultUnit"></span></p>
+                <p><strong>Area:</strong> <span id="resultArea"></span></p>
                 <p><strong>Category:</strong> <span id="resultCategory"></span></p>
                 <p><strong>Recommendation:</strong> <span id="resultRecommendation"></span></p>
+                <div id="facilitySuggestion" style="margin-top:10px;"></div>
             </div>
             <br>
             <button id="saveWasteBtn" class="btn">Save to Records</button>
         </section>
+
+        <section class="card full-width">
+            <h3>Your Identified Waste Records</h3>
+            <div id="wasteList"></div>
+        </section>
+
     </div>
 
     <script src="../js/identify.js"></script>

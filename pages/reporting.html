@@ -30,17 +30,51 @@
             <section class="card full-width">
                 <h2>Reports & Analytics</h2>
                 <p>Visual overview of waste classification and tracking data.</p>
-
                 <div class="chart-container">
                     <canvas id="wasteTypeChart"></canvas>
+                    <p id="noTypeData" style="display:none; text-align:center; color:#888;">No waste type data available
+                        yet</p>
                 </div>
-
                 <div class="chart-container">
                     <canvas id="wasteCategoryChart"></canvas>
+                    <p id="noCategoryData" style="display:none; text-align:center; color:#888;">No category data
+                        available yet</p>
                 </div>
 
                 <div class="chart-container">
                     <canvas id="wasteDisposalChart"></canvas>
+                    <p id="noDisposalData" style="display:none; text-align:center; color:#888;">No disposal records
+                        available yet</p>
+                </div>
+
+                <div class="report-section">
+                    <h3>Disposal Costs</h3>
+                    <div class="table-wrapper">
+                        <table class="waste-table report-table" id="costTable">
+                            <thead>
+                                <tr>
+                                    <th>Disposal Method</th>
+                                    <th>Total Quantity</th>
+                                    <th>Cost per Unit</th>
+                                    <th>Total Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <p id="totalCost" class="highlight"></p>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Recycling Rate</h3>
+                    <canvas id="recyclingChart"></canvas>
+                    <p id="noRecyclingData" style="display:none; text-align:center; color:#888;">No recycling data
+                        available yet</p>
+                </div>
+
+                <div class="report-section">
+                    <h3>Insights & Recommendations</h3>
+                    <ul id="insightList"></ul>
                 </div>
             </section>
         </main>

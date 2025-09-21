@@ -35,38 +35,61 @@
                     Ensure safe, eco-friendly, and compliant waste handling.
                 </p>
 
-                <form>
-                    <div class="form-group">
-                        <label for="wasteType">Waste Type</label>
-                        <select id="wasteType" name="wasteType" required>
-                            <option value="">-- Select Waste Type --</option>
-                            <option value="plastic">Plastic</option>
-                            <option value="metal">Metal</option>
-                            <option value="organic">Organic</option>
-                            <option value="electronic">Electronic</option>
-                            <option value="hazardous">Hazardous</option>
-                        </select>
-                    </div>
+                <form id="disposalForm" class="form-grid">
+                    <label for="wasteType">Waste Type</label>
+                    <select id="wasteType" name="wasteType" required>
+                        <option value="">-- Select Waste Type --</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="metal">Metal</option>
+                        <option value="organic">Organic</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="hazardous">Hazardous</option>
+                        <option value="other">Other</option>
+                    </select>
 
-                    <div class="form-group">
-                        <label for="method">Disposal / Recycling Method</label>
-                        <select id="method" name="method" required>
-                            <option value="">-- Select Method --</option>
-                            <option value="recycle">Recycling Center</option>
-                            <option value="compost">Composting</option>
-                            <option value="landfill">Landfill</option>
-                            <option value="incineration">Incineration</option>
-                            <option value="hazardous">Hazardous Waste Facility</option>
-                        </select>
-                    </div>
+                    <label for="method">Disposal / Recycling Method</label>
+                    <select id="method" name="method" required>
+                        <option value="">-- Select Method --</option>
+                    </select>
 
-                    <div class="form-group">
-                        <label for="notes">Additional Notes</label>
-                        <textarea id="notes" name="notes"
-                            placeholder="e.g. Handle with gloves, fragile, etc."></textarea>
-                    </div>
+                    <label for="destination">Disposal Destination / Facility</label>
+                    <select id="destination" name="destination" required>
+                        <option value="">-- Select Destination --</option>
+                    </select>
 
-                    <button type="submit" class="btn">Schedule Disposal</button>
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" min="0" step="any" placeholder="e.g. 5" required>
+
+                    <label for="unit">Unit</label>
+                    <select id="unit" name="unit" required>
+                        <option value="kg">kg</option>
+                        <option value="items">items</option>
+                        <option value="liters">liters</option>
+                        <option value="m3">m³</option>
+                    </select>
+
+                    <label for="cost">Estimated Cost (₦)</label>
+                    <input type="text" id="cost" name="cost" readonly placeholder="Auto-filled">
+
+                    <label for="schedule">Collection Schedule</label>
+                    <input type="datetime-local" id="schedule" name="schedule" required>
+
+                    <label for="provider">Service Provider</label>
+                    <select id="provider" name="provider" required>
+                        <option value="">-- Select Provider --</option>
+                        <option value="GreenCycle Ltd">GreenCycle Ltd</option>
+                        <option value="EcoWaste Services">EcoWaste Services</option>
+                        <option value="City Compost Co.">City Compost Co.</option>
+                        <option value="SafeHaz Disposal">SafeHaz Disposal</option>
+                    </select>
+
+
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" name="notes" placeholder="e.g. Handle with gloves, fragile, etc."></textarea>
+
+                    <div style="grid-column: 1 / -1; text-align: right;">
+                        <button type="submit" class="btn">Schedule Disposal</button>
+                    </div>
                 </form>
             </section>
 
@@ -93,8 +116,48 @@
 
             <section class="card full-width">
                 <h3>Your Disposal History</h3>
-                <div id="disposalHistory" class="history-list">
-                    <p>No disposal records found.</p>
+                <div class="table-wrapper">
+                    <table class="waste-table" id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Waste</th>
+                                <th>Method</th>
+                                <th>Facility</th>
+                                <th>Amount</th>
+                                <th>Unit</th>
+                                <th>Cost (₦)</th>
+                                <th>Schedule</th>
+                                <th>Provider</th>
+                                <th>Notes</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="card full-width">
+                <h3>Cost Summary</h3>
+                <div id="costSummary">
+                    <p>No data yet.</p>
+                </div>
+            </section>
+
+            <section class="card full-width">
+                <h3>Facility-level Breakdown</h3>
+                <div class="table-wrapper">
+                    <table class="waste-table" id="facilityTable">
+                        <thead>
+                            <tr>
+                                <th>Facility</th>
+                                <th>Total Amount</th>
+                                <th>Unit</th>
+                                <th>Total Cost (₦)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </section>
 

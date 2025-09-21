@@ -24,19 +24,20 @@
                 <a href="../index.html" onclick="logout()">Logout</a>
             </nav>
         </header>
-        
+
         <main class="dashboard">
             <section class="card full-width">
                 <h2>Compliance & Regulatory Information</h2>
                 <p>
                     Proper waste management is not just good practice — it's required by law.
-                    Below are key compliance guidelines and best practices you should follow.
+                    Use this page to explore regulatory guidelines, best practices, and resources.
                 </p>
+                <input type="text" id="searchBox" placeholder="🔍 Search compliance rules..." />
             </section>
-        
-            <section class="card">
-                <h3>Key Regulatory Guidelines</h3>
-                <ul>
+
+            <section class="card collapsible">
+                <h3 class="collapsible-header">📜 Key Regulatory Guidelines</h3>
+                <ul class="collapsible-content">
                     <li>Segregate waste at the source (organic, recyclable, hazardous).</li>
                     <li>Ensure hazardous/e-waste is handled only by certified recyclers.</li>
                     <li>Maintain records of waste generated and disposal methods.</li>
@@ -44,10 +45,10 @@
                     <li>Follow local government recycling and landfill restrictions.</li>
                 </ul>
             </section>
-        
-            <section class="card">
-                <h3>Best Practices</h3>
-                <ol>
+
+            <section class="card collapsible">
+                <h3 class="collapsible-header">💡 Best Practices</h3>
+                <ol class="collapsible-content">
                     <li>Train staff and community members on waste segregation.</li>
                     <li>Adopt the “reduce, reuse, recycle” principle at all levels.</li>
                     <li>Label waste bins clearly for easy classification.</li>
@@ -55,16 +56,19 @@
                     <li>Stay updated with environmental laws in your region.</li>
                 </ol>
             </section>
-        
-            <!-- <section class="card">
-                <h3>Resources & Downloads</h3>
-                <p>Here are some useful documents and templates:</p>
-                <ul>
-                    <li><a href="#">Waste Tracking Log Template (PDF)</a></li>
-                    <li><a href="#">Recycling Guidelines (PDF)</a></li>
-                    <li><a href="#">Local Environmental Laws (Link)</a></li>
-                </ul>
-            </section> -->
+
+            <section class="card">
+                <h3>Compliance Reminders</h3>
+                <form id="reminderForm" class="reminder-form">
+                    <input type="text" id="reminderTask" placeholder="Enter task" required>
+                    <input type="date" id="reminderDate" required>
+                    <button type="submit">Add Reminder</button>
+                </form>
+                <div id="reminderList" class="reminder-list">
+                    <p>Loading reminders...</p>
+                </div>
+            </section>
+
         </main>
     </div>
 
@@ -74,6 +78,7 @@
         }
     </script>
     <script src="../js/navigation.js"></script>
+    <script src="../js/compliance.js"></script>
 </body>
 
 </html>
