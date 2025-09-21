@@ -1,18 +1,73 @@
 const wasteTypeSelect = document.getElementById("wasteType");
 const customTypeContainer = document.getElementById("customTypeContainer");
 const customTypeInput = document.getElementById("customType");
+const liveRecommendations = document.getElementById("liveRecommendations");
+
+// Map of recommendations for quick preview
+const quickRecommendations = {
+  organic: [
+    "Store separately in sealed bins to avoid pests.",
+    "Use for compost or biogas production.",
+    "Deliver to municipal compost facilities."
+  ],
+  plastic: [
+    "Rinse and sort plastics by type (PET, HDPE).",
+    "Repurpose bottles/containers.",
+    "Send plastics to recycling facilities."
+  ],
+  metal: [
+    "Keep metals free of contaminants (oil, paint).",
+    "Sell or reuse scrap metal.",
+    "Send to certified metal recycling facilities."
+  ],
+  glass: [
+    "Handle broken glass with protective gloves.",
+    "Reuse intact bottles/jars.",
+    "Deliver to glass recycling plants."
+  ],
+  paper: [
+    "Keep paper dry and clean.",
+    "Reuse for packaging or crafts.",
+    "Send to paper recycling facilities."
+  ],
+  "e-waste": [
+    "Do not break or incinerate electronics.",
+    "Refurbish or donate if possible.",
+    "Deliver to certified e-waste centers."
+  ],
+  hazardous: [
+    "Always use protective gear when handling.",
+    "Store in clearly labeled containers.",
+    "Use licensed hazardous waste services only."
+  ]
+};
 
 // Show custom input when "Other" is selected
 wasteTypeSelect.addEventListener("change", () => {
   if (wasteTypeSelect.value === "other") {
     customTypeContainer.style.display = "block";
     customTypeInput.required = true;
+    liveRecommendations.style.display = "none"; // hide for custom
   } else {
     customTypeContainer.style.display = "none";
     customTypeInput.value = "";
     customTypeInput.required = false;
+
+    // Show live recommendations if available
+    if (quickRecommendations[wasteTypeSelect.value]) {
+      liveRecommendations.innerHTML = `
+        <h4>Recommendations for ${wasteTypeSelect.options[wasteTypeSelect.selectedIndex].text}:</h4>
+        <ul>${quickRecommendations[wasteTypeSelect.value]
+          .map(r => `<li>${r}</li>`)
+          .join("")}</ul>
+      `;
+      liveRecommendations.style.display = "block";
+    } else {
+      liveRecommendations.style.display = "none";
+    }
   }
 });
+
 
 document.getElementById("identifyForm").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -184,9 +239,21 @@ function saveWaste() {
     return;
   }
 
+  // Extract a short recommendation (first bullet point text only)
+  let shortRec = "";
+  const recMatch = window.currentWaste.recommendation.match(/<li><strong>.*?<\/strong>:?\s*(.*?)<\/li>/i);
+  if (recMatch && recMatch[1]) {
+    shortRec = recMatch[1].trim();
+  } else {
+    shortRec = "Follow best disposal practices.";
+  }
+
   const storageKey = `wasteRecords_${loggedInUser}`;
   let storedWaste = JSON.parse(localStorage.getItem(storageKey)) || [];
-  storedWaste.push(window.currentWaste);
+  storedWaste.push({
+    ...window.currentWaste,
+    shortRecommendation: shortRec
+  });
 
   localStorage.setItem(storageKey, JSON.stringify(storedWaste));
 
@@ -227,6 +294,7 @@ function renderWasteList() {
           ? `<span class="custom-category">(${waste.type})</span>`
           : `(${waste.type})`
       } - ${waste.quantity} ${waste.unit || ""} (${waste.area || "N/A"})</p>
+      <p class="rec-snippet"><em>Tip:</em> ${waste.shortRecommendation || "Check disposal options."}</p>
       <small>${new Date(waste.date).toLocaleString()}</small>
     `;
     wasteListContainer.appendChild(item);

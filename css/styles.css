@@ -875,6 +875,16 @@ textarea {
     text-decoration: underline;
 }
 
+.waste-item {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0;
+}
+
+.rec-snippet {
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: #2a6f37;
+}
 
 @media (max-width: 768px) {
     header {

@@ -9,7 +9,7 @@ function loadWasteRecords() {
   tableBody.innerHTML = "";
 
   if (records.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center;">No records found</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="10" style="text-align:center;">No records found</td></tr>`;
     return;
   }
 
@@ -32,6 +32,7 @@ function loadWasteRecords() {
       <td>${categoryCell}</td>
       <td>${record.description || "-"}</td>
       <td>${record.date || "-"}</td>
+      <td>${record.serviceProvider || "-"}</td>
       <td><button onclick="deleteRecord(${index})">Delete</button></td>
     `;
     tableBody.appendChild(row);

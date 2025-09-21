@@ -35,7 +35,7 @@
             <form id="identifyForm" class="form-grid">
                 <label for="wasteName">Waste Name</label>
                 <input type="text" id="wasteName" placeholder="e.g. Plastic Bottle" required>
-
+        
                 <label for="wasteType">Waste Type</label>
                 <select id="wasteType" required>
                     <option value="">Select type</option>
@@ -48,15 +48,15 @@
                     <option value="hazardous">Hazardous</option>
                     <option value="other">Other</option>
                 </select>
-
+        
                 <div id="customTypeContainer" style="display: none;">
                     <label for="customType">Custom Waste Type</label>
                     <input type="text" id="customType" placeholder="Enter your own category">
                 </div>
-
+        
                 <label for="quantity">Quantity</label>
                 <input type="number" id="quantity" placeholder="e.g. 5" min="1" required>
-
+        
                 <label for="unit">Unit</label>
                 <select id="unit" required>
                     <option value="">Select unit</option>
@@ -67,13 +67,17 @@
                     <option value="m³">m³</option>
                     <option value="items">items</option>
                 </select>
-
+        
                 <label for="area">Area / Site</label>
                 <input type="text" id="area" placeholder="e.g. Construction Site A, Office Block, Storage Room">
-
+        
                 <label for="description">Description</label>
                 <textarea id="description" placeholder="Brief description..." rows="3"></textarea>
-
+        
+                <!-- NEW recommendations placeholder -->
+                <div id="liveRecommendations" class="recommendation-box"
+                    style="display:none; grid-column: 1 / -1; margin-top:10px;"></div>
+        
                 <button type="submit" class="btn">Classify Waste</button>
             </form>
         </section>

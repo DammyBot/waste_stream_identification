@@ -213,17 +213,29 @@ function addInsight(msg) {
 if (totalDisposalQty === 0) {
   addInsight("No disposal records available yet. Start logging waste disposal to generate insights.");
 } else {
+  // Recycling insights
   if (recyclingQty / totalDisposalQty < 0.3) {
     addInsight("Recycling rate is below 30%. Consider increasing recyclable material recovery.");
   } else {
     addInsight("Good recycling performance! Keep maintaining or improving recycling efforts.");
   }
 
+  // Landfill insights
   if ((disposalCounts["Landfill"] || 0) > totalDisposalQty * 0.5) {
-    addInsight("Over 50% of waste goes to landfill. Explore alternative methods like recycling or composting to cut costs and improve sustainability.");
+    addInsight("Over 50% of waste goes to landfill. Explore alternatives like recycling or composting to cut costs and improve sustainability.");
   }
 
+  // Cost insights
   if (totalCost > 1000) {
     addInsight(`High disposal costs detected ($${totalCost.toFixed(2)}). Review methods to reduce expenses.`);
+  }
+
+  // Category-specific insights
+  if ((categoryCounts["Hazardous Waste"] || 0) > 0) {
+    addInsight("Hazardous waste detected. Ensure safe handling, storage, and compliance with regulations.");
+  }
+
+  if ((categoryCounts["Organic Waste"] || 0) > totalDisposalQty * 0.2) {
+    addInsight("Large amounts of organic waste generated. Consider composting to reduce landfill dependency.");
   }
 }
