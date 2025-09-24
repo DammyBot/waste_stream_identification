@@ -154,13 +154,13 @@ if (disposalLabels.length > 0) {
     row.innerHTML = `
       <td>${method}</td>
       <td>${qty}</td>
-      <td>$${costPerUnit.toFixed(2)}</td>
-      <td>$${methodCost.toFixed(2)}</td>
+      <td>₦${costPerUnit.toFixed(2)}</td>
+      <td>₦${methodCost.toFixed(2)}</td>
     `;
     costTableBody.appendChild(row);
   });
 
-  document.getElementById("totalCost").textContent = `Total Disposal Cost: $${totalCost.toFixed(2)}`;
+  document.getElementById("totalCost").textContent = `Total Disposal Cost: ₦${totalCost.toFixed(2)}`;
 } else {
   costTableBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">No disposal cost data</td></tr>`;
 }
@@ -227,7 +227,7 @@ if (totalDisposalQty === 0) {
 
   // Cost insights
   if (totalCost > 1000) {
-    addInsight(`High disposal costs detected ($${totalCost.toFixed(2)}). Review methods to reduce expenses.`);
+    addInsight(`High disposal costs detected (₦${totalCost.toFixed(2)}). Review methods to reduce expenses.`);
   }
 
   // Category-specific insights
